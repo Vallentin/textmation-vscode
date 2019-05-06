@@ -1,0 +1,49 @@
+{
+	"Create": {
+		"prefix": "create",
+		"body": [
+			"create ${1:Rectangle}",
+			"\t$0"
+		],
+		"description": "Create element"
+	},
+	"Template": {
+		"prefix": "template",
+		"body": [
+			"template ${1:Template}",
+			"\t$0"
+		],
+		"description": "Define template"
+	},
+	"Template Inherit": {
+		"prefix": "template",
+		"body": [
+			"template ${1:Template} inherit ${2:Drawable}",
+			"\t$0"
+		],
+		"description": "Define template"
+	},
+	"Inherit": {
+		"prefix": "inherit",
+		"body": [
+			"inherit ${2:Drawable}",
+			"\t$0"
+		]
+	},
+	"Keyframe": {
+		"prefix": "keyframe",
+		"body": [
+			"create Keyframe",
+			"\ttime = ${1:1s}",
+			"\t$0"
+		]
+	},
+	"Parent": {
+		"prefix": "parent",
+		"body": "parent.${1:property}"
+	},
+	"Grandparent": {
+		"prefix": "parent",
+		"body": "parent.parent.${1:property}"
+	}
+}

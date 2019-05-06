@@ -25,6 +25,12 @@
 				"scopeName": "source.anim",
 				"path": "./syntaxes/textmation.tmLanguage.json"
 			}
+		],
+		"snippets": [
+			{
+				"language": "textmation",
+				"path": "./snippets/snippets.json"
+			}
 		]
 	},
 	"scripts": {
