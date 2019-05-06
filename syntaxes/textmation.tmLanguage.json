@@ -1,0 +1,131 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Textmation",
+	"scopeName": "source.anim",
+	"patterns": [
+		{ "include": "#comment" },
+		{ "include": "#create" },
+		{ "include": "#template" },
+		{ "include": "#keywords" },
+		{ "include": "#assignment" },
+		{ "include": "#strings" },
+		{ "include": "#literals" },
+		{ "include": "#special-variables" },
+		{ "include": "#element-types" },
+		{ "include": "#function-call" },
+		{ "include": "#identifier" }
+	],
+	"repository": {
+		"comment": {
+			"patterns": [
+				{
+					"name": "comment.line.anim",
+					"_match": "#[^\n]*",
+					"begin": "#",
+					"end": "$",
+					"patterns": [
+						{
+							"match": "\\\\.",
+							"name": "comment.line.anim"
+						},
+						{
+							"include": "#comment-tags"
+						}
+					]
+				}
+			]
+		},
+		"comment-tags": {
+			"name": "keyword.codetag.anim",
+			"match": "\\b(?:TODO|FIXME|BUG|NOTE|HACK)\\b"
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.anim",
+					"match": "\\b(create|template|inherit)\\b"
+				}
+			]
+		},
+		"strings": {
+			"name": "string.quoted.double.anim",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.anim",
+					"match": "\\\\."
+				}
+			]
+		},
+		"create": {
+			"match": "(create)\\s+(\\w+)",
+			"captures": {
+				"1": {
+					"name": "keyword.control.anim"
+				},
+				"2": {
+					"name": "entity.name.type.anim"
+				}
+			}
+		},
+		"template": {
+			"match": "(template)\\s+(\\w+)(?:\\s+(inherit)\\s+(\\w+))?",
+			"captures": {
+				"1": {
+					"name": "keyword.control.anim"
+				},
+				"2": {
+					"name": "entity.name.type.anim"
+				},
+				"3": {
+					"name": "keyword.control.anim"
+				},
+				"4": {
+					"name": "entity.name.type.anim"
+				}
+			}
+		},
+		"assignment": {
+			"match": "(\\w+)\\s*:?=",
+			"captures": {
+				"1": {
+					"name": "variable.parameter.anim"
+				}
+			}
+		},
+		"literals": {
+			"patterns": [
+				{
+					"match": "\\b(?:true|false)\\b",
+					"name": "constant.language.boolean.anim"
+				},
+				{
+					"match": "\\b\\d+\\.\\d+([Ee][+-]?\\d+)?(?:%|(?:s|ms|deg|rad|turn)\\b)?",
+					"name": "constant.numeric.float.anim"
+				},
+				{
+					"match": "\\b\\d+([Ee][+-]?\\d+)?(?:%|(?:s|ms|deg|rad|turn)\\b)?",
+					"name": "constant.numeric.integer.anim"
+				}
+			]
+		},
+		"special-variables": {
+			"match": "\\b(?:parent|infinite)\\b",
+			"name": "variable.language.this.anim"
+		},
+		"element-types": {
+			"match": "\\b_*[[:upper:]]\\w*\\b",
+			"name": "entity.name.type.anim"
+		},
+		"identifier": {
+			"match": "\\b[_[:alpha:]]\\w*\\b",
+			"name": "variable.parameter.anim"
+		},
+		"function-call": {
+			"name": "entity.name.function.anim",
+			"match": "\\w+[ \\t]*(?=\\()",
+			"_match": "\\b(?<!\\$)\\w+[ \\t]*(?=\\()"
+		}
+	}
+}

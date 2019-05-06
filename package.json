@@ -10,6 +10,23 @@
 		"Other"
 	],
 	"main": "./out/extension.js",
+	"contributes": {
+		"languages": [
+			{
+				"id": "textmation",
+				"aliases": ["Textmation"],
+				"extensions": [".anim"],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "textmation",
+				"scopeName": "source.anim",
+				"path": "./syntaxes/textmation.tmLanguage.json"
+			}
+		]
+	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
