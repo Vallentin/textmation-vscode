@@ -4,6 +4,7 @@
 	"scopeName": "source.anim",
 	"patterns": [
 		{ "include": "#comment" },
+		{ "include": "#include" },
 		{ "include": "#create" },
 		{ "include": "#template" },
 		{ "include": "#keywords" },
@@ -43,7 +44,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.anim",
-					"match": "\\b(create|template|inherit)\\b"
+					"match": "\\b(create|template|inherit|include)\\b"
 				}
 			]
 		},
@@ -57,6 +58,23 @@
 					"match": "\\\\."
 				}
 			]
+		},
+		"include": {
+			"match": "^\\s*(include)\\s+([^\n]*)",
+			"captures": {
+				"1": {
+					"name": "keyword.control.anim"
+				},
+				"2": {
+					"patterns": [
+						{ "include": "#keywords" },
+						{
+							"match": "\\w+",
+							"name": "source.anim"
+						}
+					]
+				}
+			}
 		},
 		"create": {
 			"match": "(create)\\s+(\\w+)",
